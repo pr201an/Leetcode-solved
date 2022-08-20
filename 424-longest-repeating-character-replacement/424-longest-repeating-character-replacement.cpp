@@ -1,24 +1,21 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        int maxLength = 0;
-        int i = 0, j = 0, n = s.length();
-        int maxCharCountInCurrentWindow = 0;
-        int count[26] = {0};
-        
-        while(j < n) {
-            count[s[j] - 'A']++;
-            maxCharCountInCurrentWindow = max(maxCharCountInCurrentWindow, count[s[j]-'A']);
-            
-            if(j - i + 1 - maxCharCountInCurrentWindow > k) {
-                count[s[i] - 'A']--;
-                i++;
+        unordered_map<char, int> map;
+        int left = 0, right = 0;
+        int ans = 0, maxlen = 0;
+        while(right < s.size()){
+            map[s[right]]++;
+            for(auto x:map){
+                maxlen = max(maxlen, x.second);
             }
-            
-            maxLength = max(maxLength, j - i + 1);
-            j++;
+            if((right - left - maxlen + 1) > k){
+                map[s[left]]--;
+                left++;
+            }
+            ans = max(ans,right-left+1);
+            right++;
         }
-        
-        return maxLength;
+        return ans;
     }
 };
