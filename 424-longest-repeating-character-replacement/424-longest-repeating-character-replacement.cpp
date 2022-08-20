@@ -9,11 +9,13 @@ public:
             for(auto x:map){
                 maxlen = max(maxlen, x.second);
             }
-            if((right - left - maxlen + 1) > k){
+            if((right - left - maxlen + 1) <= k){
+                ans = max(ans,right-left+1);
+            }
+            else{
                 map[s[left]]--;
                 left++;
             }
-            ans = max(ans,right-left+1);
             right++;
         }
         return ans;
