@@ -8,7 +8,7 @@ public:
                     K[i][j] = 0;
                     continue;
                 }
-                if(text1[text1.size()-i] == text2[text2.size()-j]){
+                if(text1[i-1] == text2[j-1]){
                     K[i][j] = 1+K[i-1][j-1];
                 }
                 else{
