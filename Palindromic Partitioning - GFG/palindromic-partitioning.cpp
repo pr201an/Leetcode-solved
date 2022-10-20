@@ -43,13 +43,11 @@ public:
                 a = dp[i][k];
             else{
                 a = solve(str,i,k);
-                dp[i][k] = a;
             }
             if(dp[k+1][j] != -1)
                 b = dp[k+1][j];
             else{
                 b = solve(str,k+1,j);
-                dp[i][k] = b;
             }
             int temp_ans = a + b + 1;
             ans = min(ans, temp_ans);
